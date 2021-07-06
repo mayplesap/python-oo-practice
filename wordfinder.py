@@ -1,28 +1,51 @@
 from random import choice
+
 class WordFinder:
     """Word Finder: finds random words from a dictionary."""
-    def __init__(self, file_name ):
-        """"""
+
+    def __init__(self, file_name):
+        """ Initializes file_name and a list of words from file_name. """
         self.file_name = file_name 
-        self.list = self.read_and_create_list()
-
-
-    def read_and_create_list(self):
-        """"""
-        curr_list = []
         file = open(self.file_name)
-        for line in file:
-            curr_list.append(line[ :-1])
-
+        self.words = self.create_list(file)
+        print(f"{len(self.words)} words read")
         file.close()
+        #list of words, better name
+
+
+    def create_list(self, file):
+        """ Appends to a list, returns list of words. """
+        words = [line.strip() for line in file]
         
-        return curr_list
+        return words
 
 
     def random(self):
-        """"""
-        word = choice(self.list)
+        """ Return a random word from list. """
+        word = choice(self.words)
         return word
 
 
+class SpecialWordFinder(WordFinder):
+    """ Finds random words from a dictionary, 
+        excludes blank lines and # symbol. """
+
+    def create_list(self, file):
+        """ Create a list without blank lines and comments(#). """
+        words = [line.strip() for line in file 
+                    if line.strip() != "" and not line.startswith("#")]
+
+        return words
+
+
+# wf = SpecialWordFinder("input file name here")
+
+# print(wf.random())
+# print(wf.random())
+# print(wf.random())
+# print(wf.random())
+# print(wf.random())
+# print(wf.random())
+# print(wf.random())
+# print(wf.random())
 
