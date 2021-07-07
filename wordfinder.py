@@ -1,7 +1,29 @@
+import random
 from random import choice
 
 class WordFinder:
-    """Word Finder: finds random words from a dictionary."""
+    """Word Finder: finds random words from a dictionary.
+
+    >>> wf = WordFinder("/Users/serena/Documents/rithm/week3/day12/python-oo-practice/words.txt")
+    11 words read
+
+    >>> random.seed(1)
+    >>> wf.random_word()
+    'porcupine'
+
+    >>> random.seed(2)
+    >>> wf.random_word()
+    'cat'
+ 
+    >>> random.seed(1)
+    >>> wf.random_word()
+    'porcupine'
+   
+    >>> random.seed(3)
+    >>> wf.random_word()
+    'Love'
+
+    """
 
     def __init__(self, file_name):
         """ Initializes file_name and a list of words from file_name. """
@@ -20,7 +42,7 @@ class WordFinder:
         return words
 
 
-    def random(self):
+    def random_word(self):
         """ Return a random word from list. """
         word = choice(self.words)
         return word
